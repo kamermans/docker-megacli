@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+MegaCli -LDInfo -Lall -aALL | egrep "^(Virtual|State|Num)" /tmp/mega-l | sed -e 'N;N;s/\n/ /g'

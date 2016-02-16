@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+LOG_FILE="/megacli/events.log"
+
+MegaCli -AdpEventLog -GetEvents -f $LOG_FILE -aALL
+
+echo "Event log saved to $LOG_FILE" >&2
+
+less -S $LOG_FILE
