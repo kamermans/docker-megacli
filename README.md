@@ -24,9 +24,8 @@ You can run this container without installing anything except Docker:
 Once you start the container, you will find yourself at a bash prompt:
 
 ```
-steve@wit-origincache:~$ docker run --rm -ti --privileged kamermans/docker-megacli
+steve@steve-hq:~$ docker run --rm -ti --privileged kamermans/docker-megacli
 
-```
       MegaCLI SAS RAID Management Tool  Ver 8.07.14 Dec 16, 2013
       Storage Command Line Tool  Ver 1.03.11 Jan 30, 2013
 
