@@ -76,7 +76,7 @@ Hardware
                  Status            : Replace Battery pack        PD
 ```
 
-Well, it seems by battery (BBU) is dead, great.
+Well, it seems my battery (BBU) is dead, great.
 
 Let's see how this script works:
 
