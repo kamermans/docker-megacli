@@ -10,7 +10,7 @@ man() {
 
 # Environment variabls
 TERM="xterm"
+PATH="/megacli:$PATH"
 
 # Bash aliases
 alias pico="nano"
-

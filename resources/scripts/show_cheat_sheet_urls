@@ -1,0 +1,8 @@
+#!/bin/sh -e
+
+cat << EOF
+http://erikimh.com/megacli-cheatsheet/
+https://things.maths.cam.ac.uk/computing/docs/public/megacli_raid_lsi.html
+http://www.vmwareadmins.com/megacli-working-examples-cheat-sheet/
+http://hwraid.le-vert.net/wiki/LSIMegaRAIDSAS
+EOF
