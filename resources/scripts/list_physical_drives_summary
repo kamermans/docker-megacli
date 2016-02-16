@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+MegaCli -PDlist -aALL | grep -E '^Adapter|^Slot|^Raw Size:|^Firmware|^Media|^Port status|S\.M\.A\.R\.T' | sed -e 's/^Slot/\nSlot/g'
