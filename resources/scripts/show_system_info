@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "$(dmidecode -s system-manufacturer) $(dmidecode -s system-product-name)"
+echo "Service Tag: $(dmidecode -s system-serial-number)"
+echo "BIOS Version: $(dmidecode -s bios-version) ($(dmidecode -s bios-release-date))"

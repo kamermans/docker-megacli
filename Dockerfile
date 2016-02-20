@@ -6,6 +6,7 @@ RUN yum -y install \
         bash-completion \
         nano \
         less \
+        dmidecode \
     && yum clean all \
     && mkdir -p /megacli \
     && curl -sSL http://srkdev.com/megacli/MegaCli-8.07.14-1.noarch.rpm > /tmp/megacli.rpm \
