@@ -3,7 +3,7 @@ man() {
     shopt -s nocasematch
     if [[ $@ =~ "megacli" ]]; then
         command megacli -help | less -S
-    elif [[ $@ =~ "megacli" ]]; then
+    elif [[ $@ =~ "storcli" ]]; then
         command storcli -help | less -S
     else
         command man "$@"
