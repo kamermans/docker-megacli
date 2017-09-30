@@ -1,12 +1,14 @@
 FROM centos:7
 
 ENV PATH "/opt/MegaRAID/storcli:/opt/MegaRAID/MegaCli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ENV TERM xterm
 
 RUN yum -y install \
         bash-completion \
         nano \
         less \
         dmidecode \
+        smartmontools \
     && yum clean all \
     && mkdir -p /megacli \
     && curl -sSL http://srkdev.com/megacli/MegaCli-8.07.14-1.noarch.rpm > /tmp/megacli.rpm \
