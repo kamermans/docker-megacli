@@ -1,6 +1,7 @@
 #!/bin/sh -e
 
 cat << EOF
+https://calomel.org/megacli_lsi_commands.html
 http://erikimh.com/megacli-cheatsheet/
 https://things.maths.cam.ac.uk/computing/docs/public/megacli_raid_lsi.html
 http://www.vmwareadmins.com/megacli-working-examples-cheat-sheet/

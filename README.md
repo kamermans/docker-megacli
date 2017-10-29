@@ -1,5 +1,5 @@
 # docker-megacli
-Docker container for running MegaCLI and StorCLI on Debian / Ubuntu / RedHat / CentOS
+Docker container for running MegaCLI and StorCLI on Debian / Ubuntu / RedHat / CentOS / SUSE
 
 ## Using MegaCLI
 MegaCLI is a very complicated tool that requires you to enter case-sensitive arguments
@@ -37,22 +37,27 @@ to get you going:
 
 ```
 [root@ed2f45d425f2 megacli]# ls -1
-MegaSAS.log
 list_adapters
 list_drive_summary
 list_enclosures
 list_logical_drives
 list_physical_drives
+list_physical_drives_summary
+lsi.sh
 show_battery_status
 show_cheat_sheet_urls
 show_event_log
 show_full_config
 show_summary
+show_system_info
 silence_alarm
+start_bbu_learn
+update_time_from_system
 ```
 
 > Note: All of the scripts are non-destructive, they simply show you information about
-> your RAID Controller.
+> your RAID Controller or perform non-destructive actions (setting the date/time, starting
+> a BBU learn cycle, silencing alarms, etc).
 
 This directory (`/megacli`) is in your `PATH`, so you can run those commands from anywhere.
 You should probably start by taking a look at the controller summary:
@@ -95,11 +100,37 @@ sheet for more information, so try `show_cheat_sheet_urls`:
 
 ```
 [root@ed2f45d425f2 megacli]# show_cheat_sheet_urls
+https://calomel.org/megacli_lsi_commands.html
 http://erikimh.com/megacli-cheatsheet/
 https://things.maths.cam.ac.uk/computing/docs/public/megacli_raid_lsi.html
 http://www.vmwareadmins.com/megacli-working-examples-cheat-sheet/
 http://hwraid.le-vert.net/wiki/LSIMegaRAIDSAS
 ```
+
+### The lsi.sh script
+There is a script included called `lsi.sh`, which comes from [calomel.org](https://calomel.org/megacli_lsi_commands.html) and can be used for some more advanced things.
+
+You can run `./lsi.sh` with no arguments to see the options available:
+```
+            OBPG  .:.  lsi.sh
+-----------------------------------------------------
+status        = Status of Virtual drives (volumes)
+drives        = Status of hard drives
+ident $slot   = Blink light on drive (need slot number)
+good $slot    = Simply makes the slot "Unconfigured(good)" (need slot number)
+replace $slot = Replace "Unconfigured(bad)" drive (need slot number)
+progress      = Status of drive rebuild
+errors        = Show drive errors which are non-zero
+bat           = Battery health and capacity
+batrelearn    = Force BBU re-learn cycle
+logs          = Print card logs
+checkNemail   = Check volume(s) and send email on raid errors
+allinfo       = Print out all settings and information about the card
+settime       = Set the raid card's time to the current system time
+setdefaults   = Set preferred default settings for new raid setup
+```
+
+> Note: `lsi.sh` is maintained by calomel.org.  Since I didn't write it or code-review it, it may be capable of destructive actions!
 
 ## Updating the container
 You can update this container with `docker pull`:

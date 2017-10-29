@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+MegaCli -AdpSetTime $(date +%Y%m%d) $(date +%H:%M:%S) -aALL
