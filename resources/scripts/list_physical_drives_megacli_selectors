@@ -1,0 +1,38 @@
+#!/usr/bin/env python2
+
+from __future__ import print_function
+import re, subprocess
+
+adapterRe = re.compile(r'^Adapter #(?P<adapter>\d+)')
+enclosureRe = re.compile(r'^Enclosure Device ID: (?P<enclosure>\d+)')
+slotRe = re.compile(r'^Slot Number: (?P<slot>\d+)')
+sizeRe = re.compile(r'^Raw Size: (?P<size>.+)')
+
+adapter = ''
+enclosure = ''
+slot = ''
+size = ''
+
+pdlist = subprocess.Popen('MegaCli -PDlist -aALL', shell=True, stdout=subprocess.PIPE)
+for line in pdlist.stdout:
+
+    m = adapterRe.search(line)
+    if m:
+        adapter = m.group('adapter')
+        continue
+
+    m = enclosureRe.search(line)
+    if m:
+        enclosure = m.group('enclosure')
+        continue
+
+    m = slotRe.search(line)
+    if m:
+        slot = m.group('slot')
+        continue
+
+    m = sizeRe.search(line)
+    if m:
+        size = m.group('size')
+        print('"[{}:{}] -a{}"  (Adapter {}, Enclosure {}, Slot {}: {})'.format(enclosure, slot, adapter, adapter, enclosure, slot, size))
+        continue
