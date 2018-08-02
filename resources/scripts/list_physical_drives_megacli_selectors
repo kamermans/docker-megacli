@@ -35,4 +35,5 @@ for line in pdlist.stdout:
     if m:
         size = m.group('size')
         print('"[{}:{}] -a{}"  (Adapter {}, Enclosure {}, Slot {}: {})'.format(enclosure, slot, adapter, adapter, enclosure, slot, size))
+        enclosure = slot = size = ""
         continue
