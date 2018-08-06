@@ -8,13 +8,17 @@ RUN yum -y install \
         nano \
         less \
         dmidecode \
-        smartmontools \
     && yum clean all \
     && mkdir -p /megacli \
-    && curl -sSL http://srkdev.com/megacli/MegaCli-8.07.14-1.noarch.rpm > /tmp/megacli.rpm \
-    && curl -sSL http://srkdev.com/megacli/storcli-1.03.11-1.noarch.rpm > /tmp/storcli.rpm \
+    && curl -sSL -o /tmp/megacli.rpm https://srkdev.com/megacli/MegaCli-8.07.14-1.noarch.rpm \
+    && curl -sSL -o /tmp/storcli.rpm https://srkdev.com/megacli/storcli-1.03.11-1.noarch.rpm \
     && rpm -ivh /tmp/*.rpm \
     && rm /tmp/*.rpm \
+    && curl -sSL -o /smartmontools.tar.gz http://builds.smartmontools.org/r4747/smartmontools-6.7-0-20180804-r4747.linux-x86_64-static.tar.gz \
+    && cd / \
+    && tar -zxvf smartmontools.tar.gz \
+    && rm smartmontools.tar.gz \
+    && /usr/local/sbin/update-smart-drivedb \
     && cd /megacli \
     && ln -s $(command -v MegaCli64) /usr/local/sbin/megacli \
     && ln -s $(command -v MegaCli64) /usr/local/sbin/megacli64 \

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+smartctl --scan-open | while read LINE; do 
+    echo "#################################################"
+    echo "# Disk: $LINE"
+    echo "#################################################"
+    smartctl -iA --device=$(awk '{print $3, $1}' <<<"$LINE")
+done
