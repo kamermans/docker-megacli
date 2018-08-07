@@ -1,0 +1,33 @@
+#!/bin/bash
+
+SCRIPT=$(basename $0)
+
+if [[ -z $3 ]]; then
+    echo "Usage: ./$SCRIPT <start|stop> [E:S] -aA"
+    echo "    'start' starts the drive LED blinking, 'stop' stops it"
+    echo "    'E' is the Enclosure ID (may be blank)"
+    echo "    'S' is the Slot ID"
+    echo "    'A' is the Adapter (-aALL will also work)"
+    echo ""
+    echo "Note: You can use ./list_physical_drives_megacli_selectors to get"
+    echo "a list of all the drives with their enclosures, slots and adapter"
+    echo "IDs in the correct format for this command"
+    echo ""
+    echo "Examples:"
+    echo "    # Start blinking the drive in enclosure 32, slot 5"
+    echo "    ./$SCRIPT start [32:5] -aALL"
+    echo ""
+    echo "    # Stop blinking the drive in enclosure 32, slot 5"
+    echo "    ./$SCRIPT stop [32:5] -aALL"
+    exit 2
+fi
+
+ACTION=$1
+
+if ! [[ $ACTION = "start" ]] && ! [[ $ACTION = "stop" ]]; then
+   echo "Error: The first argument must be 'start' or 'stop'"
+   exit 3
+fi
+
+MegaCli -PdLocate -$ACTION -physdrv $2 $3
+
